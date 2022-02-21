@@ -7,7 +7,7 @@ const pages = (state = pagesDefaultState, action) => {
 		case 'SET_PAGE':
 			return {
 				...state,
-				data: action.data,
+				page: action.page,
 			};
 
 		default:

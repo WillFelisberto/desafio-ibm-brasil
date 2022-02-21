@@ -38,6 +38,11 @@ export const ContainerBookListing = styled.div`
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
+		max-width: 200px;
+
+		@media (max-width: 768px) {
+			max-width: 190px;
+		}
 	}
 	.bookTitle {
 		display: -webkit-box;

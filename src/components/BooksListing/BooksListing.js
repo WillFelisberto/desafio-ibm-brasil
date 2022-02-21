@@ -43,7 +43,7 @@ export default function BooksDetails() {
 										<Button
 											size="large"
 											href={`/book/${book.id}`}
-											color="success"
+											color="primary"
 											variant="contained"
 										>
 											Detalhes
