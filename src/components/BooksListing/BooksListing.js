@@ -38,7 +38,7 @@ export default function BooksDetails() {
 										</Link>
 										<p className="textDescription">
 											{book.volumeInfo.description ||
-												'No description available'}
+												'Descrição não disponível'}
 										</p>
 										<Button
 											size="large"
