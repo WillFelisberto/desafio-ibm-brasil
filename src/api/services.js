@@ -14,6 +14,12 @@ export const getBookDetails = async (id) => {
 };
 
 export const searchBook = async (term, page = 1) => {
+	if (page === 1) {
+		page = 1;
+	} else {
+		page = page * 10 - 10;
+	}
+
 	try {
 		const response = await api.get(
 			`v1/volumes?q=${term}&startIndex=${page}&maxResults=9`
