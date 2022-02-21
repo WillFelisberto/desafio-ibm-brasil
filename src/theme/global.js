@@ -17,7 +17,6 @@ const GlobalStyle = createGlobalStyle`
     background-image:url(${booksBackground});
     background-repeat:no-repeat;
     -webkit-background-size:cover;
-    background-attachment: fixed;
     -moz-background-size:cover;
     -o-background-size:cover;
     background-size:cover;

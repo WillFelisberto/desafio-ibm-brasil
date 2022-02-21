@@ -1,15 +1,13 @@
 import book from './book/reducer';
-import pages from './pages/reducer';
-import term from './search-term/reducer';
-import booksSearch from './book-search/reducer';
+// import repositories from './repositories/reducer';
+// import user from './user/reducer';
 
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
 	book,
-	pages,
-	booksSearch,
-	term,
+	// repositories,
+	// user,
 });
 
 export default rootReducer;
