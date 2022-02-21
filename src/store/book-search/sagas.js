@@ -4,7 +4,6 @@ import { FAILURE_BOOKS, REQUEST_BOOKS, SUCCESS_BOOKS } from './constants';
 
 async function searchBooks(params) {
 	try {
-		console.log('term', params);
 		return await searchBook(params.params, params.page);
 	} catch (error) {
 		throw error;

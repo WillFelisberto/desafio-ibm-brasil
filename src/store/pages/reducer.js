@@ -3,7 +3,6 @@ const pagesDefaultState = {
 };
 
 const pages = (state = pagesDefaultState, action) => {
-	console.log('state', state, action);
 	switch (action.type) {
 		case 'SET_PAGE':
 			return {
