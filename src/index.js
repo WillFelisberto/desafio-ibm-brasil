@@ -7,10 +7,12 @@ import store from './store';
 import BookDetails from './components/BookDetails/BookDetails';
 import FavoritesBooks from './components/FavoritesBooks/FavoritesBooks';
 import GlobalStyle from './theme/global';
+import Menu from '../src/components/common/Menu';
 
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
+			<Menu />
 			<GlobalStyle />
 			<Routes>
 				<Route path="/book/:id" exact={true} element={<BookDetails />} />

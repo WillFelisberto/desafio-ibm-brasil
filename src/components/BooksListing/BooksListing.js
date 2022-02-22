@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import noThumbnail from '../../assets/no-image-thumb.png';
 import { ContainerBookListing } from './styled';
 import Button from '@material-ui/core/Button';
-import { getStorageValue, setLocalStorage } from '../hooks/localstorage';
+import { getStorageValue } from '../hooks/localstorage';
 
 export default function BooksListing({ favorites }) {
 	let booksListing = useSelector((state) => state.booksSearch.data);

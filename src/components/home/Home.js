@@ -8,11 +8,10 @@ import PaginationComponent from '../Pagination/Pagination';
 
 export default function Home() {
 	const dispatch = useDispatch();
-	// const [search, setSearch] = useState('');
 
 	useEffect(() => {
 		dispatch(clearBooks());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div>
