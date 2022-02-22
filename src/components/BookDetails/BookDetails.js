@@ -32,10 +32,13 @@ export default function BookDetails() {
 
 	useEffect(() => {
 		const favBooks = getStorageValue('favBooks');
-		const newFavBooks = favBooks.find(
-			(element) => element.id === bookDetail.id
-		);
-		if (newFavBooks) setIsFav(true);
+
+		if (favBooks) {
+			const newFavBooks = favBooks.find(
+				(element) => element.id === bookDetail.id
+			);
+			if (newFavBooks) setIsFav(true);
+		}
 	}, [bookDetail]);
 
 	const handleFav = () => {
