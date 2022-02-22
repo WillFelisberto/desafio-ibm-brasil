@@ -28,6 +28,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif
   }
+
+  .text-center{
+    text-align: center;
+  }
    
 `;
 
