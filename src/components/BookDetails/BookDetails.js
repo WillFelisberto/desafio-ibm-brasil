@@ -97,6 +97,8 @@ export default function BookDetails() {
 							</p>
 							<div className="buttons">
 								<Button
+									target="_blank"
+									href={bookDetail.volumeInfo.previewLink}
 									startIcon={<FaExternalLinkAlt />}
 									size="large"
 									color="primary"

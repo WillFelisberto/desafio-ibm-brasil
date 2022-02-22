@@ -57,8 +57,9 @@ export default function BooksListing({ favorites }) {
 												: 'Descrição não disponível'}
 										</p>
 										<Button
+											component={Link}
+											to={`/book/${book.id}`}
 											size="large"
-											href={`/book/${book.id}`}
 											color="primary"
 											variant="contained"
 										>

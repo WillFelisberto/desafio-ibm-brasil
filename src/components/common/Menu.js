@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { AppBar, Button, Toolbar } from '@material-ui/core';
 import { FaHome, FaStar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export default function ButtonAppBar() {
 	return (
@@ -11,17 +12,19 @@ export default function ButtonAppBar() {
 						style={{
 							fontWeight: 'bold',
 						}}
-						href={`/`}
+						component={Link}
+						to={`/ `}
 						startIcon={<FaHome />}
 						color="inherit"
 					>
 						Home
 					</Button>
 					<Button
+						component={Link}
+						to={`/favorites`}
 						style={{
 							fontWeight: 'bold',
 						}}
-						href={`/favorites`}
 						startIcon={<FaStar />}
 						color="inherit"
 					>
