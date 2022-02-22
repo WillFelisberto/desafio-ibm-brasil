@@ -58,7 +58,16 @@ export const ContainerInfos = styled.section`
 	.buttons {
 		display: flex;
 		justify-content: space-around;
-		padding-top: 30px;
+
+		@media (max-width: 768px) {
+			padding-top: 0px;
+			width: 100%;
+			flex-direction: column;
+
+			button {
+				margin-top: 20px;
+			}
+		}
 	}
 
 	h1 {

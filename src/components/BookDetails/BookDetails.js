@@ -6,12 +6,15 @@ import Loader from '../common/Loader';
 import { ContainerDetails, ContainerImg, ContainerInfos } from './styled';
 import Button from '@material-ui/core/Button';
 import { FaExternalLinkAlt, FaRegStar, FaStar } from 'react-icons/fa';
+import { getStorageValue, setLocalStorage } from '../hooks/localstorage';
+import noImg from '../../assets/book-no-image.jpg';
 
 export default function BookDetails() {
 	let { id } = useParams();
 	const dispatch = useDispatch();
 	const bookDetails = useSelector((state) => state.book);
 	const [loading, setLoading] = useState(true);
+	const [isFav, setIsFav] = useState();
 	const [bookDetail, setBookDetails] = useState([]);
 	const regex = /(<([^>]+)>)/gi;
 
@@ -27,6 +30,32 @@ export default function BookDetails() {
 		}
 	}, [id, dispatch, bookDetails]);
 
+	useEffect(() => {
+		const favBooks = getStorageValue('favBooks');
+		const newFavBooks = favBooks.find(
+			(element) => element.id === bookDetail.id
+		);
+		if (newFavBooks) setIsFav(true);
+	}, [bookDetail]);
+
+	const handleFav = () => {
+		const favBooks = getStorageValue('favBooks');
+		if (!isFav) {
+			const newFavBooks = favBooks ? [...favBooks, bookDetail] : [bookDetail];
+			setLocalStorage('favBooks', newFavBooks);
+		}
+		setIsFav(true);
+	};
+
+	const removeFav = () => {
+		const favBooks = getStorageValue('favBooks');
+		const newFavBooks = favBooks.filter(
+			(element) => element.id !== bookDetail.id
+		);
+		setLocalStorage('favBooks', newFavBooks);
+		setIsFav(false);
+	};
+
 	return (
 		<ContainerDetails>
 			{loading ? (
@@ -37,7 +66,12 @@ export default function BookDetails() {
 				<>
 					<ContainerImg>
 						<img
-							src={bookDetail.volumeInfo.imageLinks.large}
+							src={
+								bookDetail.volumeInfo.imageLinks &&
+								bookDetail.volumeInfo.imageLinks.large
+									? bookDetail.volumeInfo.imageLinks.large
+									: noImg
+							}
 							alt={bookDetail.volumeInfo.title}
 						/>
 					</ContainerImg>
@@ -48,26 +82,51 @@ export default function BookDetails() {
 								Publicado por {bookDetail.volumeInfo.publisher} em{' '}
 								{bookDetail.volumeInfo.publishedDate}
 							</p>
-							<p>{bookDetail.volumeInfo.pageCount} páginas</p>
-							<p>{bookDetail.volumeInfo.description.replace(regex, '')}</p>
-
+							<p>
+								{bookDetail.volumeInfo.pageCount
+									? bookDetail.volumeInfo.pageCount + ' páginas'
+									: null}{' '}
+							</p>
+							<p>
+								{bookDetail.volumeInfo.description
+									? bookDetail.volumeInfo.description.replace(regex, '')
+									: 'Descrição não disponível'}
+							</p>
 							<div className="buttons">
 								<Button
 									startIcon={<FaExternalLinkAlt />}
 									size="large"
-									color="success"
+									color="primary"
 									variant="contained"
 								>
 									Saiba mais
 								</Button>
-								<Button
-									size="large"
-									startIcon={<FaRegStar />}
-									color="success"
-									variant="contained"
-								>
-									Adicionar aos Favoritos
-								</Button>
+
+								{isFav ? (
+									<Button
+										onClick={(e) => {
+											removeFav(e);
+										}}
+										size="large"
+										startIcon={<FaStar />}
+										color="secondary"
+										variant="contained"
+									>
+										Remover aos Favoritos
+									</Button>
+								) : (
+									<Button
+										onClick={(e) => {
+											handleFav(e);
+										}}
+										size="large"
+										startIcon={<FaRegStar />}
+										color="default"
+										variant="contained"
+									>
+										Adicionar aos Favoritos
+									</Button>
+								)}
 							</div>
 						</div>
 					</ContainerInfos>
