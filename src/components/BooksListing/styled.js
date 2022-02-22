@@ -34,6 +34,13 @@ export const ContainerBookListing = styled.div`
 		max-width: 500px;
 	}
 
+	.none-book {
+		text-align: center;
+		height: 200px;
+		display: flex;
+		place-content: center;
+	}
+
 	.cardInfo {
 		display: flex;
 		flex-direction: column;
