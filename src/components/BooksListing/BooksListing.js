@@ -4,10 +4,20 @@ import { Link } from 'react-router-dom';
 import noThumbnail from '../../assets/no-image-thumb.png';
 import { ContainerBookListing } from './styled';
 import Button from '@material-ui/core/Button';
+import { getStorageValue, setLocalStorage } from '../hooks/localstorage';
 
-export default function BooksDetails() {
-	const booksListing = useSelector((state) => state.booksSearch.data);
-	const termSearched = useSelector((state) => state.term.term);
+export default function BooksListing({ favorites }) {
+	let booksListing = useSelector((state) => state.booksSearch.data);
+	let termSearched = useSelector((state) => state.term.term);
+
+	if (favorites) {
+		const favBooks = getStorageValue('favBooks');
+
+		if (favBooks) {
+			booksListing = favBooks;
+			termSearched = 'Favoritos';
+		}
+	}
 
 	return (
 		<>
